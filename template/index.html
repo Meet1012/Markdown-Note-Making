@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload File</title>
+    <style>
+      /* General reset */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Body styling */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f4f8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      /* Form container styling */
+      .form-container {
+        background-color: #ffffff;
+        padding: 30px 40px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+      }
+
+      h2 {
+        color: #333333;
+        margin-bottom: 20px;
+        font-size: 24px;
+      }
+
+      /* Input field styling */
+      .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+      }
+
+      .form-group label {
+        font-weight: bold;
+        color: #555555;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .form-group input[type="file"] {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+        width: 100%;
+      }
+
+      /* Error message styling */
+      .error-message {
+        color: #f41717;
+        margin-top: 15px;
+        font-weight: bold;
+      }
+
+      /* Button styling */
+      .submit-button {
+        background: linear-gradient(90deg, #4a90e2, #357abd);
+        color: #ffffff;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        width: 100%;
+        transition: background 0.3s;
+      }
+
+      .submit-button:hover {
+        background: linear-gradient(90deg, #357abd, #4a90e2);
+      }
+
+      /* Success message styling */
+      .success-message {
+        color: #28a745;
+        margin-top: 15px;
+        font-weight: bold;
+      }
+
+      .button-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5;
+        margin-top: 10px;
+        justify-content: space-between;
+      }
+
+      .preview-button {
+        background: linear-gradient(90deg, #55db6d, #0e9d28);
+        padding: 10px 40px;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+
+      .preview-button:hover {
+        background: linear-gradient(90deg, #0e9d28, #55db6d);
+      }
+      .grammar-button {
+        background: linear-gradient(90deg, #bf5cd3, #6b0b6b);
+        padding: 10px 40px;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+
+      .grammar-button:hover {
+        background: linear-gradient(90deg, #6b0b6b, #bf5cd3);
+      }
+      .saved-button {
+        margin-top: 10px;
+        background: linear-gradient(90deg, #89e5f1, #0d4956);
+        padding: 10px 40px;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+
+      .saved-button:hover {
+        background: linear-gradient(90deg, #0d4956, #89e5f1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Upload File</h2>
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+          {{ form.file.label_tag }} {{ form.file }}
+          <!-- Display field-specific errors -->
+        </div>
+
+        <button type="submit" class="submit-button">Upload</button>
+      </form>
+
+      <div class="button-group">
+        <div>
+          <a href="{% url 'result' file_name %}" class="preview-button"
+            >Preview</a
+          >
+          <a href="{% url 'grammar' file_name %}" class="grammar-button">Grammar Check</a>
+        </div>
+        <a href="{% url 'saved' %}" class="saved-button">Saved Content</a>
+      </div>
+
+      <!-- Display success or other messages -->
+      {% if message == False %}
+      <p class="error-message">{{ form.file.errors.0 }}</p>
+      {% endif %} {% if message == True %}
+      <p class="success-message">File Uploaded Successfully</p>
+      {% endif %}
+    </div>
+  </body>
+</html>
