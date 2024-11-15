@@ -122,38 +122,12 @@ def grammarCheck(request, file_name):
         for i in data:
             if i["Filename"] == file_name:
                 text = i["Content"]
-    # def check_grammar(note):
-    #     # Check for grammar mistakes
-    #     matches = tool.check(note)
-
-    #     # Format the response
-    #     errors = [
-    #         {
-    #             "message": match.message,
-    #             "replacements": match.replacements,
-    #             "offset": match.offset,
-    #             "error": match.context
-    #         }
-    #         for match in matches
-    #     ]
-
-    #     return {"errors": errors, "total_errors": len(errors)}
-
-    # # Text to check for grammar issues
-    # text = "She were going to the market yesterday to bought some vegetables. Her friend told that they should go by car, but she doesn’t wanted to listen. They buys the vegetables but lefts her wallet at home. So, they decides to return back later. They enjoys the journey despite problem."
-    # response = check_grammar(text)
-    # offsets = [error['offset'] for error in response['errors']]
-    # replacments = [error['replacements'] for error in response['errors']]
-    # error_keywords = text.split(" ")
-    # length = 0
-    # res = ""
-    # for i in error_keywords:
-    #     if length in offsets:
-    #         index = offsets.index(length)
-    #         res += f"[{i}] {tuple(replacments[index])} "
-    #     else:
-    #         res += i + " "
-    #     length += len(i) + 1
+    # matches = tool.check(text)
+    # res = text
+    # for m_match in reversed(matches):
+    #   res = res[:m_match.offset] + f"[{res[m_match.offset:m_match.offset + m_match.errorLength]}]" + f"({','.join(m_match.replacements)})" + res[m_match.offset + m_match.errorLength:]
     # print(res)
+        
+    
     text = "She [were] ('is', 'was') going to the market yesterday to [bought] ('buy',) some vegetables. Her friend told that they should go by car, but she doesn’t [wanted] ('want',) to listen. They [buys] ('buy',) the vegetables but lefts her wallet at home. So, they [decides] ('decide',) to [return] ('return',) back later. They [enjoys] ('enjoy',) the journey despite problem."
     return render(request, "grammar.html", {"content": text})
