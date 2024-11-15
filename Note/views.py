@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-import json
+import json 
 from Note.forms import Upload_Form
 import markdown
 # Create your views here.
@@ -83,10 +83,10 @@ def add_file(request):
                     data = json.load(f)
                 except json.JSONDecodeError:
                     data = []
-                if data == []:
-                    id = 1
-                else:
+                if data != []:
                     id = data[-1]["id"] + 1
+                else:
+                    id = 1
                 for i in data:
                     if i["Filename"] != file_name:
                         data.append(
@@ -119,10 +119,9 @@ def grammarCheck(request, file_name):
     with open("Note_Making/FileNames/files.json", "r") as f:
         data = json.load(f)
         print(data)
-
-        # if form.is_valid():
-        #     file = form.cleaned_data['file']
-        #     print(file)
+        for i in data:
+            if i["Filename"] == file_name:
+                text = i["Content"]
     # def check_grammar(note):
     #     # Check for grammar mistakes
     #     matches = tool.check(note)
@@ -155,5 +154,6 @@ def grammarCheck(request, file_name):
     #     else:
     #         res += i + " "
     #     length += len(i) + 1
-    #     print(res)
-    return render(request, "grammar.html", {"content": data})
+    # print(res)
+    text = "She [were] ('is', 'was') going to the market yesterday to [bought] ('buy',) some vegetables. Her friend told that they should go by car, but she doesn’t [wanted] ('want',) to listen. They [buys] ('buy',) the vegetables but lefts her wallet at home. So, they [decides] ('decide',) to [return] ('return',) back later. They [enjoys] ('enjoy',) the journey despite problem."
+    return render(request, "grammar.html", {"content": text})
