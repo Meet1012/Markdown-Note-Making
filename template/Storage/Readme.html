@@ -50,67 +50,29 @@
 </head>
 <body>
     <div class="container">
-                <h1>🌐 Django Unit Converter Web App</h1>
-<p><a href="https://www.djangoproject.com/"><img alt="Django" src="https://img.shields.io/badge/Django-4.0%2B-brightgreen" /></a>
-<a href="https://www.python.org/"><img alt="Python" src="https://img.shields.io/badge/Python-3.8%2B-blue" /></a></p>
-<p>A versatile <strong>Unit Converter</strong> web application built with the <strong>Django</strong> framework. This web app allows users to convert between units of <strong>Length</strong>, <strong>Weight</strong>, and <strong>Temperature</strong> with a user-friendly interface.<a href="https://roadmap.sh/projects/unit-converter">Project Link</a></p>
-<h2>📋 Features</h2>
+                <h1>Expense Tracker</h1>
+<p>This is a simple command-line application for tracking expenses. It allows users to add, delete, update, summarize, and display expenses. The data is stored in a JSON file.</p>
+<h2>Features</h2>
 <ul>
-<li>🔄 <strong>Length Conversion</strong>: Convert between meters, kilometers, miles, and more.</li>
-<li>⚖️ <strong>Weight Conversion</strong>: Convert between kilograms, pounds, grams, etc.</li>
-<li>🌡️ <strong>Temperature Conversion</strong>: Convert between Celsius, Fahrenheit, and Kelvin.</li>
-<li>🧑‍💻 <strong>Responsive UI</strong>: Mobile-friendly, clean, and modern design using HTML, CSS, and JavaScript.</li>
-<li>🌍 <strong>Flexible Navigation</strong>: Switch between conversion types via tabs without page reloads.</li>
-<li>🚀 <strong>Real-time Conversions</strong>: Submissions processed without reloading the entire page using Django forms and logic.</li>
+<li>Add new expenses with a description and amount.</li>
+<li>Delete existing expenses by their ID.</li>
+<li>Update expenses (either description or amount).</li>
+<li>View total expenses for a specific month or overall.</li>
+<li>Display a list of all expenses in a tabular format.</li>
 </ul>
-<h2>📷 Screenshots</h2>
-<p><img alt="Unit Converter" src="https://assets.roadmap.sh/guest/unit-converter-be-project.png" />  <!-- Replace this with an actual screenshot URL --></p>
-<h2>🛠️ Tech Stack</h2>
+<h2>Prerequisites</h2>
 <ul>
-<li><strong>Django</strong>: Backend framework for the web app.</li>
-<li><strong>Python</strong>: The core language for logic and unit conversions.</li>
-<li><strong>HTML/CSS/JavaScript</strong>: For building the frontend interface.</li>
-<li><strong>Bootstrap/TailwindCSS</strong>: (Optional) Frameworks to improve the UI design.</li>
+<li>Python 3.x</li>
+<li><code>pandas</code> library (install using <code>pip install pandas</code>)</li>
 </ul>
-<h2>🚀 Getting Started</h2>
-<p>Before running the project, ensure you have the following installed: <strong>Python 3.8+</strong> and <strong>Django 4.0+</strong>. </p>
-<h3>Installation Steps</h3>
+<h2>Usage</h2>
 <ol>
-<li>
-<p>Clone the Repository:
-   ```bash
-   git clone https://github.com/your-username/unit-converter-django.git
-   cd unit-converter-django</p>
-</li>
-<li>
-<p>Install Dependencies:
-    ```bash
-    pip install -r requirements.txt</p>
-</li>
-<li>
-<p>Run Migrations: Set up the database by applying migrations:
-    ```bash
-    python manage.py migrate</p>
-</li>
-<li>
-<p>Start the Development Server: Launch the server to view the application locally:
-    ```bash
-    python manage.py runserver</p>
-</li>
-<li>
-<p>Access the Application: Open your web browser and navigate to:
-    ```bash
-    http://127.0.0.1:8000/</p>
-</li>
+<li>Clone this repository or download the script.</li>
+<li>Ensure you have a JSON file named <code>expense.json</code> in the same directory (the program will create one if it doesn't exist).</li>
+<li>Run the script using the command line.</li>
 </ol>
-<h2>📄 Usage</h2>
-<ol>
-<li><strong>Select Conversion Type</strong>: Choose from Length, Weight, or Temperature by clicking the respective tab.</li>
-<li><strong>Input Values</strong>: Enter the value you want to convert and select the unit you are converting from and to.</li>
-<li><strong>Convert</strong>: Click the "Convert" button, and the result will be displayed immediately without a page refresh.</li>
-</ol>
-<h2>🔧 Customization</h2>
-<p>Feel free to customize the conversion logic in <code>views.py</code> to add more units or modify existing ones. You can also tweak the UI components by editing the HTML files located in the <code>static</code> directory.</p>
-<p>Happy converting! 🚀</p></div>
+<h3>Command Syntax</h3>
+<p>```bash
+python expense_tracker.py <function> [--description <description>] [--amount <amount>] [--id <id>] [--month <month>]</p></div>
 </body>
 </html>

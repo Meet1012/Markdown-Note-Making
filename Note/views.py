@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-import json 
+import json
 from Note.forms import Upload_Form
 import markdown
 # Create your views here.
@@ -87,15 +87,15 @@ def add_file(request):
                     id = data[-1]["id"] + 1
                 else:
                     id = 1
-                for i in data:
-                    if i["Filename"] != file_name:
-                        data.append(
-                            {"id": id, "Filename": file_name, "Content": content})
-                    else:
-                        break
-                else:
+                file_list = [i["Filename"] for i in data]
+                if file_name not in file_list:            
                     data.append(
-                            {"id": id, "Filename": file_name, "Content": content})
+                        {"id": id, "Filename": file_name, "Content": content})
+                else:
+                    for i in data:
+                        if i["Filename"] == file_name:
+                            i["Content"] = content
+                            break
                 f.seek(0)
                 json.dump(data, f)
                 f.truncate()
@@ -127,7 +127,6 @@ def grammarCheck(request, file_name):
     # for m_match in reversed(matches):
     #   res = res[:m_match.offset] + f"[{res[m_match.offset:m_match.offset + m_match.errorLength]}]" + f"({','.join(m_match.replacements)})" + res[m_match.offset + m_match.errorLength:]
     # print(res)
-        
-    
+
     text = "She [were] ('is', 'was') going to the market yesterday to [bought] ('buy',) some vegetables. Her friend told that they should go by car, but she doesn’t [wanted] ('want',) to listen. They [buys] ('buy',) the vegetables but lefts her wallet at home. So, they [decides] ('decide',) to [return] ('return',) back later. They [enjoys] ('enjoy',) the journey despite problem."
     return render(request, "grammar.html", {"content": text})
